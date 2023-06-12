@@ -1,0 +1,128 @@
+.profile {
+    color: inherit;
+}
+
+.profile__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    margin: 0 auto 106px;
+    padding: 74px 0 0;
+}
+
+.profile__form {
+    max-width: 410px;
+    margin: 0 auto;
+}
+
+.profile__field-wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 17px 0;
+    border-top: 1px solid #424242;
+}
+
+.profile__field-wrap:first-child {
+    border: none;
+}
+
+.profile__label {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+}
+
+.profile__input {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: end;
+    color: inherit;
+    background: transparent;
+    border: none;
+}
+
+.profile__form-actions {
+    padding-top: 203px;
+    text-align: center;
+}
+
+.profile__form-actions-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__action-button {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    background: transparent;
+    border: none;
+    padding-bottom: 16px;
+    color: inherit;
+    cursor: pointer;
+    transition: opacity 0.1s ease-in;
+}
+
+.profile__action-button:hover {
+    opacity: 0.7;
+}
+
+.profile__action-button_action_edit {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: inherit;
+}
+
+.profile__action-button_action_logout {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #EE3465;
+}
+
+@media screen and (max-width: 768px) {
+    .profile__title {
+        margin: 0 auto 79px;
+        padding: 336px 0 0;
+    }
+}
+
+@media screen and (max-width: 525px) {
+    .profile__title {
+        margin: 0 auto 70px;
+        padding: 63px 0 0;
+    }
+
+    .profile__form {
+        max-width: 260px;
+    }
+
+    .profile__field-wrap {
+        display: flex;
+        justify-content: space-between;
+        padding: 17px 0;
+        border-top: 1px solid #424242;
+    }
+
+    .profile__form-actions {
+        padding-top: 362px;
+    }
+
+    .profile__action-button {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .profile__action-button_action_edit {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .profile__action-button_action_logout {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

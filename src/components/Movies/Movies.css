@@ -1,0 +1,30 @@
+.movies {
+    display: flex;
+    flex-direction: column;
+}
+
+.movies__add-btn {
+    width: 320px;
+    height: 36px;
+    margin: 50px auto 80px;
+    padding: 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    border: 1px solid #424242;
+    background-color: #202020;
+    color: inherit;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.1s ease-in;
+}
+
+.movies__add-btn:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 525px) {
+    .movies__add-btn {
+        width: 240px;
+    }
+}
