@@ -9,7 +9,7 @@ function MoviesCard({ movie }) {
     const isDeleteButton = location.pathname === '/saved-movies';
 
     return (
-        <article className="moviescard__content" key={movie.id}>
+        <article className="moviescard" key={movie.id}>
             <img
                 className="moviescard__image"
                 src={movie.screen}

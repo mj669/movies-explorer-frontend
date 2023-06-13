@@ -25,7 +25,6 @@ function Portfolio() {
                         <img className="portfolio__link-arrow" src={arrow} alt="Стрелка"/>
                     </a>
                 </li>
-
             </ul>
         </section>
     );

@@ -1,4 +1,4 @@
-.moviescard__content {
+.moviescard {
     max-width: 364px;
     max-height: 281px;
     margin: 0;
@@ -72,12 +72,12 @@
     right: 24px;
 }
 
-.moviescard__container:hover .moviescard__delete-btn {
+.moviescard:hover .moviescard__delete-btn {
     display: block;
 }
 
 @media screen and (max-width: 768px) {
-    .moviescard__content {
+    .moviescard {
         max-width: 339px;
         max-height: 262px;
     }
@@ -104,7 +104,7 @@
 }
 
 @media screen and (max-width: 525px) {
-    .moviescard__content {
+    .moviescard {
         max-width: 300px;
     }
 

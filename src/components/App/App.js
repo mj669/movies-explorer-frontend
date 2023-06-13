@@ -24,43 +24,43 @@ function App() {
     <div className="app">
       {headerPaths.includes(location.pathname) ? (
         <Header loggedIn={loggedIn} />
-      ) : (
-        ''
-      )}
-      <Routes>
-        <Route
-          path="/"
-          element={<Main />}
-          loggedIn={loggedIn}
-        />
-        <Route
-          path="/movies"
-          element={<Movies />}
-          loggedIn={loggedIn}
-        />
-        <Route
-          path="/signup"
-          element={<Register />}
-        />
-        <Route
-          path="/signin"
-          element={<Login />}
-        />
-        <Route
-          path="/profile"
-          element={<Profile />}
-          loggedIn={loggedIn}
-        />
-        <Route
-          path="/saved-movies"
-          element={<SavedMovies />}
-          loggedIn={loggedIn}
-        />
-        <Route
-          path="*"
-          element={<NotFoundPage />}
-        />
-      </Routes>
+      ) : ('')}
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={<Main />}
+            loggedIn={loggedIn}
+          />
+          <Route
+            path="/movies"
+            element={<Movies />}
+            loggedIn={loggedIn}
+          />
+          <Route
+            path="/signup"
+            element={<Register />}
+          />
+          <Route
+            path="/signin"
+            element={<Login />}
+          />
+          <Route
+            path="/profile"
+            element={<Profile />}
+            loggedIn={loggedIn}
+          />
+          <Route
+            path="/saved-movies"
+            element={<SavedMovies />}
+            loggedIn={loggedIn}
+          />
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
+        </Routes>
+      </main>
       {footerPaths.includes(location.pathname) ? <Footer /> : ''}
     </div>
   );

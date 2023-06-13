@@ -11,7 +11,7 @@ function Header({ loggedIn }) {
 
     return (
         <>
-            <header className={`header ${location.pathname === "/" ? 'header__theme_blue' : ''}`}>
+            <header className={`header ${location.pathname === "/" ? 'header_blue' : ''}`}>
                 <Link className="header__logo" to="/">
                     <img src={Logo} alt="logo" />
                 </Link>
@@ -20,7 +20,7 @@ function Header({ loggedIn }) {
                         <div className="header__movies-wrap">
                             <Link
                                 className={`header__movies${location.pathname === '/movies'
-                                    ? ' header__movies-route_active'
+                                    ? ' header__movies_active'
                                     : ''
                                     }`}
                                 to="/movies"
@@ -29,7 +29,7 @@ function Header({ loggedIn }) {
                             </Link>
                             <Link
                                 className={`header__movies${location.pathname === '/saved-movies'
-                                    ? ' header__movies-route_active'
+                                    ? ' header__movies_active'
                                     : ''
                                     }`}
                                 to="/saved-movies"
