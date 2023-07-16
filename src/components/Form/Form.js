@@ -2,14 +2,21 @@ import React from 'react';
 import './Form.css';
 import { Link, useLocation } from "react-router-dom";
 
-function Form({ name, buttonText, linkText, url, text, children }) {
+function Form({ name, buttonText, linkText, url, text, children, onSubmit, isValid, errorMsg }) {
 
     let location = useLocation();
 
     return (
-        <form className="form" name={name} method="post" noValidate>
+        <form
+            className="form"
+            name={name}
+            onSubmit={onSubmit}
+            noValidate
+        >
+
             {children}
-            <button className={`form__button ${location.pathname === "/signin" ? 'form__button-signin' : ''}`}>{buttonText}</button>
+
+            <button className={`form__button ${location.pathname === "/signin" ? 'form__button-signin' : ''}`} disabled={!isValid}>{buttonText}</button>
             <div className="form__text-wrap">
                 <p className="form__text">{text}</p>
                 <Link to={url} className="form__link">{linkText}</Link>

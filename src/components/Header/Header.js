@@ -19,19 +19,13 @@ function Header({ loggedIn }) {
                     <div className="header__wrap">
                         <div className="header__movies-wrap">
                             <Link
-                                className={`header__movies${location.pathname === '/movies'
-                                    ? ' header__movies_active'
-                                    : ''
-                                    }`}
+                                className={`header__movies${location.pathname === '/movies' ? ' header__movies_active' : '' }`}
                                 to="/movies"
                             >
                                 Фильмы
                             </Link>
                             <Link
-                                className={`header__movies${location.pathname === '/saved-movies'
-                                    ? ' header__movies_active'
-                                    : ''
-                                    }`}
+                                className={`header__movies${location.pathname === '/saved-movies' ? ' header__movies_active' : '' }`}
                                 to="/saved-movies"
                             >
                                 Сохраненные фильмы

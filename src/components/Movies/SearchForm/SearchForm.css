@@ -1,6 +1,6 @@
 .search {
     position: relative;
-    margin: 70px 70px 26px;
+    margin: 70px 70px 10px;
 }
 
 .search__input {
@@ -10,6 +10,7 @@
     border: 1.5px solid #AAAAAA;
     border-radius: 8px;
     padding-left: 25px;
+    color: #FFFFFF;
     background-color: #202020;
 }
 
@@ -43,14 +44,14 @@
 
 @media screen and (max-width: 768px) {
     .search {
-        margin: 70px 30px 26px;
+        margin: 70px 30px 10px;
     }
 }
 
 @media screen and (max-width: 525px) {
     .search {
         position: relative;
-        margin: 70px 14px 30px;
+        margin: 70px 14px 10px;
     }
 
     .search__input {
