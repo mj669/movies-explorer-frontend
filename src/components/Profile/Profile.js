@@ -51,6 +51,7 @@ function Profile({ onSignOut, onUpdateUser }) {
                         onChange={handleOnChange}
                         required
                     />
+                    <span className={`input__error ${!isValid && "input__error_visible"}`}>{errors.name}</span>
                 </div>
                 <div className="profile__field-wrap">
                     <label className="profile__label">Email
@@ -68,6 +69,7 @@ function Profile({ onSignOut, onUpdateUser }) {
                         required
                     />
                 </div>
+                <span className={`input__error ${!isValid && "input__error_visible"}`}>{errors.email}</span>
                 <div className="profile__form-actions">
                     {!isEditing ? (
                         <div className="profile__form-actions-wrap">

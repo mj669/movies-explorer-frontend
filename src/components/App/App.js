@@ -15,6 +15,7 @@ import Login from '../Login/Login';
 import NotFoundPage from '../NotFoudPage/NotFoudPage';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
+import { BASE_URL } from '../../utils/constants';
 
 function App() {
 
@@ -27,12 +28,6 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useState(false);
-  const [apiErrors, setApiErrors] = useState({
-    login: {},
-    register: {},
-    profile: {},
-    movies: {},
-  });
 
   const mainApi = new MainApi({
     url: 'https://api.mj669.movies-explorer.nomoredomains.rocks',
@@ -47,14 +42,6 @@ function App() {
       setMovies(movies);
     });
   }, []);
-
-  useEffect(() => {
-    setApiErrors({
-      login: {},
-      register: {},
-      profile: {}
-    });
-  }, [location]);
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -101,10 +88,8 @@ function App() {
           .then((movies) => {
             localStorage.setItem('movies', JSON.stringify(movies));
             setMovies(movies);
-            setApiErrors({ ...apiErrors, movies: {} });
           })
           .catch((err) => {
-            setApiErrors({ ...apiErrors, movies: err });
             console.log(`Ошибка.....: ${err}`);
           });
       }
@@ -127,7 +112,6 @@ function App() {
         }
       })
       .catch((err) => {
-        setApiErrors({ ...apiErrors, login: err });
         console.log(`Ошибка.....: ${err}`);
       });
   };
@@ -139,7 +123,6 @@ function App() {
         handleLogin(values);
       })
       .catch((err) => {
-        setApiErrors({ ...apiErrors, register: err });
         console.log(`Ошибка.....: ${err}`);
       });
   };
@@ -148,7 +131,6 @@ function App() {
     mainApi
       .editProfile(user)
       .then(() => {
-        setApiErrors({ ...apiErrors, profile: {} });
         setCurrentUser({
           ...currentUser,
           name: user.name,
@@ -156,7 +138,6 @@ function App() {
         });
       })
       .catch((err) => {
-        setApiErrors({ ...apiErrors, profile: err });
         console.log(`Ошибка.....: ${err}`);
       });
   };
@@ -175,7 +156,6 @@ function App() {
         .saveMovie(movie)
         .then((res) => {
           setSavedMovies([...savedMovies, res]);
-          console.log(res);
         })
         .catch((err) => console.log(`Ошибка.....: ${err}`));
     }
@@ -201,7 +181,6 @@ function App() {
             JSON.stringify(updatedSearchedSavedMovies)
           );
         }
-        console.log(res);
       })
       .catch((err) => console.log(`Ошибка.....: ${err}`));
   };
@@ -223,7 +202,6 @@ function App() {
               element={<Register
                 onRegister={handleRegister}
                 loggedIn={loggedIn}
-                apiErrors={apiErrors}
               />}
             />
             <Route
@@ -231,7 +209,6 @@ function App() {
               element={<Login
                 onLogin={handleLogin}
                 loggedIn={loggedIn}
-                apiErrors={apiErrors}
               />}
             />
             <Route
@@ -254,7 +231,6 @@ function App() {
                   loggedIn={loggedIn}
                   savedMovies={savedMovies}
                   onLikeMovie={handleMovieLike}
-                  apiErrors={apiErrors}
                 />
               }
             />

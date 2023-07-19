@@ -4,7 +4,7 @@ import Search from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Preloader from './Preloader/Preloader';
 
-const Movies = ({ movies, savedMovies, onLikeMovie, apiErrors }) => {
+const Movies = ({ movies, savedMovies, onLikeMovie }) => {
 
     const searchedMovies = localStorage.getItem('searchedMovies');
     const queries = localStorage.getItem('searchQueryMovies');
@@ -74,16 +74,8 @@ const Movies = ({ movies, savedMovies, onLikeMovie, apiErrors }) => {
                     onFilter={filterMovies}
                     searchQuery={searchQuery}
                     onResetInput={handleResetInput}
-                    apiErrors={apiErrors}
                 />
             </div>
-            {apiErrors.movies ? (
-                <p className="movies__api-error">
-                    Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз
-                </p>
-            ) : (
-                ''
-            )}
             {isLoading ? (
                 <Preloader />
             ) : filteredMovies.length ? (

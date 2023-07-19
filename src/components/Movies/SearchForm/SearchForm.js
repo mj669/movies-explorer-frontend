@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
 
-function Search({ onFilter, searchQuery, onResetInput }) {
+function Search({ onFilter, searchQuery }) {
 
     const [searchText, setSearchText] = useState('');
     const [error, setError] = useState('');
@@ -22,16 +22,12 @@ function Search({ onFilter, searchQuery, onResetInput }) {
     const checkFilterBox = () => {
         if (searchText !== '') {
             setIsShortFilmChecked(!isShortFilmChecked);
-            // localStorage.setItem('filterCheckBox', !isShortFilmChecked);
-
             onFilter({
                 searchText: searchText,
                 isShortFilmChecked: !isShortFilmChecked
             });
         } else {
             setIsShortFilmChecked(!isShortFilmChecked);
-            // localStorage.setItem('filterCheckBox', !isShortFilmChecked);
-
             onFilter({
                 searchText: searchQuery.searchText,
                 isShortFilmChecked: !isShortFilmChecked

@@ -1,3 +1,5 @@
+import { BASE_URL } from "./constants";
+
 class MoviesApi {
     constructor({ url, headers }) {
         this._url = url;
