@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import Form from "../Form/Form";
 import Input from "../Input/Input";
+import { validateEmail } from '../../utils/validateEmail';
 
 function Login({ onLogin, loggedIn }) {
 
@@ -45,7 +46,7 @@ function Login({ onLogin, loggedIn }) {
                     onChange={handleOnChange}
                     value={values.email || ''}
                     isValid={isValid}
-                    errorText={errors.email}
+                    errorText={validateEmail(values.email).message}
                     required
                 />
                 <Input

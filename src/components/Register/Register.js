@@ -5,6 +5,8 @@ import Validator from '../../utils/Validator';
 import logo from "../../images/logo.svg";
 import Form from "../Form/Form";
 import Input from "../Input/Input";
+import { validateName } from '../../utils/validateName';
+import { validateEmail } from '../../utils/validateEmail';
 
 function Register({ onRegister }) {
 
@@ -35,7 +37,7 @@ function Register({ onRegister }) {
                     inputTitle="Имя"
                     minLength="2"
                     maxLength="20"
-                    errorText={errors.name}
+                    errorText={validateName(values.name).message}
                     value={values.name || ''}
                     onChange={handleOnChange}
                     isValid={isValid}
@@ -48,7 +50,7 @@ function Register({ onRegister }) {
                     inputTitle="E-mail"
                     minLength="7"
                     maxLength="200"
-                    errorText={errors.email}
+                    errorText={validateEmail(values.email).message}
                     value={values.email || ''}
                     onChange={handleOnChange}
                     isValid={isValid}

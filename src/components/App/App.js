@@ -15,7 +15,6 @@ import Login from '../Login/Login';
 import NotFoundPage from '../NotFoudPage/NotFoudPage';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
-import { BASE_URL } from '../../utils/constants';
 
 function App() {
 
@@ -28,6 +27,7 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const mainApi = new MainApi({
     url: 'https://api.mj669.movies-explorer.nomoredomains.rocks',
@@ -127,7 +127,8 @@ function App() {
       });
   };
 
-  const handleUpdateUser = (user) => {
+  const handleUpdateUser = (user, setIsEditing ) => {
+    setIsLoading(true);
     mainApi
       .editProfile(user)
       .then(() => {
@@ -139,6 +140,10 @@ function App() {
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setIsEditing(false);
       });
   };
 
@@ -219,6 +224,7 @@ function App() {
                   onSignOut={handleSignOut}
                   onUpdateUser={handleUpdateUser}
                   loggedIn={loggedIn}
+                  isLoading={isLoading}
                 />
               }
             />

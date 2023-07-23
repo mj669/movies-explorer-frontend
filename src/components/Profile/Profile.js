@@ -2,10 +2,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Validator from '../../utils/Validator';
+import { validateName } from '../../utils/validateName';
+import { validateEmail } from '../../utils/validateEmail';
 
-function Profile({ onSignOut, onUpdateUser }) {
+function Profile({ onSignOut, onUpdateUser, isLoading }) {
 
-    const { values, handleOnChange, errors, isValid, setValues, setIsValid } = Validator();
+    const { values, handleOnChange, isValid, setValues, setIsValid } = Validator();
 
     const currentUser = useContext(CurrentUserContext);
     const [isEditing, setIsEditing] = useState(false);
@@ -17,14 +19,14 @@ function Profile({ onSignOut, onUpdateUser }) {
         }
     }, [currentUser, setIsValid, setValues]);
 
-    function handleEditProfile(e) {
-        e.preventDefault();
+    function handleEditProfile(evt) {
+        evt.preventDefault();
         setIsEditing(true);
     }
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        onUpdateUser(values);
+        onUpdateUser(values, setIsEditing);
     }
 
     return (
@@ -46,12 +48,12 @@ function Profile({ onSignOut, onUpdateUser }) {
                         disabled={!isEditing}
                         placeholder={currentUser.name || "Введите новое имя"}
                         minLength="2"
-                        maxLength="30"
+                        maxLength="20"
                         value={values.name || ''}
                         onChange={handleOnChange}
                         required
                     />
-                    <span className={`input__error ${!isValid && "input__error_visible"}`}>{errors.name}</span>
+                    <span className={`input__error ${!isValid && "input__error_visible"}`}>{validateName(values.name).message}</span>
                 </div>
                 <div className="profile__field-wrap">
                     <label className="profile__label">Email
@@ -69,7 +71,7 @@ function Profile({ onSignOut, onUpdateUser }) {
                         required
                     />
                 </div>
-                <span className={`input__error ${!isValid && "input__error_visible"}`}>{errors.email}</span>
+                <span className={`input__error ${!isValid && "input__error_visible"}`}>{validateEmail(values.email).message}</span>
                 <div className="profile__form-actions">
                     {!isEditing ? (
                         <div className="profile__form-actions-wrap">
@@ -93,9 +95,15 @@ function Profile({ onSignOut, onUpdateUser }) {
                             <button
                                 className="profile__action-button profile__action-button_action_save"
                                 type="submit"
-                                disabled={!isValid}
+                                disabled={
+                                    !isValid ||
+                                    (values.name === currentUser.name &&
+                                        values.email === currentUser.email) ||
+                                    validateEmail(values.email).invalid ||
+                                    validateName(values.name).invalid
+                                }
                             >
-                                Сохранить
+                                    {isLoading ? 'Сохранение...' : 'Сохранить'}
                             </button>
                         </div>
                     )}
