@@ -3,6 +3,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useLocation } from 'react-router-dom';
 import useResize from '../../../utils/use-resize';
+import { SCREEN_MD, SCREEN_XL, MOVIES_CARDS_1280, MOVIES_CARDS_768, MOVIES_CARDS_480, ADD_MOVIES_CARD_1280, ADD_MOVIES_CARD_768 } from '../../../utils/constants';
 
 function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie }) {
 
@@ -15,7 +16,7 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie }) {
     }, [movies]);
 
     const renderMovies = useMemo(() => {
-        const countToRender = size.width < 768 ? 5 : size.width < 1280 ? 8 : 12;
+        const countToRender = size.width < SCREEN_MD ? MOVIES_CARDS_480 : size.width < SCREEN_XL ? MOVIES_CARDS_768 : MOVIES_CARDS_1280;
         return movies.slice(0, countToRender + moviesToAdd);
     }, [movies, moviesToAdd, size]);
 
@@ -37,7 +38,7 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie }) {
             {location.pathname === '/movies' &&
                 movies.length > renderMovies.length && (
                     <button
-                        onClick={() => {setMoviesToAdd((prev) => prev + (size.width >= 1280 ? 3 : 2));}}
+                    onClick={() => { setMoviesToAdd((prev) => prev + (size.width >= SCREEN_XL ? ADD_MOVIES_CARD_1280 : ADD_MOVIES_CARD_768));}}
                         className="movies__add-btn"
                     >
                         Еще

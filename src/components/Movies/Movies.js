@@ -3,6 +3,7 @@ import './Movies.css';
 import Search from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Preloader from './Preloader/Preloader';
+import { SHORTS_MOVIES_DURATION } from '../../utils/constants';
 
 const Movies = ({ movies, savedMovies, onLikeMovie }) => {
 
@@ -35,7 +36,7 @@ const Movies = ({ movies, savedMovies, onLikeMovie }) => {
                 if (query.isShortFilmChecked) {
                     filtered = movies.filter((m) => {
                         return (
-                            m.duration <= 40 &&
+                            m.duration <= SHORTS_MOVIES_DURATION &&
                             m.nameRU
                                 .toLowerCase()
                                 .trim()
