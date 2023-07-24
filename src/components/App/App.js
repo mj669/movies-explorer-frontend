@@ -30,6 +30,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [registerErrorMessage, setRegisterErrorMessage] = useState('');
   const [loginErrorMessage, setLoginErrorMessage] = useState('');
+  const [editIsSuccess, setEditIsSuccess] = useState(false);
+  const [editIsError, setEditIsError] = useState(false);
 
   const mainApi = new MainApi({
     url: 'https://api.mj669.movies-explorer.nomoredomains.rocks',
@@ -152,14 +154,22 @@ function App() {
     mainApi
       .editProfile(user)
       .then(() => {
+        setEditIsSuccess(true);
         setCurrentUser({
           ...currentUser,
           name: user.name,
           email: user.email
         });
+        setTimeout(() => {
+          setEditIsSuccess(false);
+        }, 3000);
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
+        setEditIsError(true);
+        setTimeout(() => {
+          setEditIsError(false);
+        }, 3000);
       })
       .finally(() => {
         setIsLoading(false);
@@ -249,6 +259,8 @@ function App() {
                   onUpdateUser={handleUpdateUser}
                   loggedIn={loggedIn}
                   isLoading={isLoading}
+                  editIsSuccess={editIsSuccess}
+                  editIsError={editIsError}
                 />
               }
             />

@@ -5,7 +5,7 @@ import Validator from '../../utils/Validator';
 import { validateName } from '../../utils/validateName';
 import { validateEmail } from '../../utils/validateEmail';
 
-function Profile({ onSignOut, onUpdateUser, isLoading }) {
+function Profile({ onSignOut, onUpdateUser, isLoading, editIsSuccess, editIsError }) {
 
     const { values, handleOnChange, isValid, setValues, setIsValid } = Validator();
 
@@ -72,6 +72,12 @@ function Profile({ onSignOut, onUpdateUser, isLoading }) {
                     />
                 </div>
                 <span className={`input__error ${!isValid && "input__error_visible"}`}>{validateEmail(values.email).message}</span>
+                {editIsSuccess && <span className={`input__error ${isValid && "input__error_visible"}`}>
+                    Данные успешно изменены.
+                </span>}
+                {editIsError && <span className={`input__error ${isValid && "input__error_visible"}`}>
+                    Ошибка при изменении данных.
+                </span>}
                 <div className="profile__form-actions">
                     {!isEditing ? (
                         <div className="profile__form-actions-wrap">
