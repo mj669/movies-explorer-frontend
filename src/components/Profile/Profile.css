@@ -70,6 +70,12 @@
     opacity: 0.7;
 }
 
+.profile__action-button:disabled,
+.profile__action-button[disabled] {
+    color: #A0A0A0;
+    pointer-events: none;
+}
+
 .profile__action-button_action_edit {
     font-weight: 400;
     font-size: 13px;

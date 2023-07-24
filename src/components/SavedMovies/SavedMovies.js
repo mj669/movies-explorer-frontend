@@ -74,8 +74,11 @@ const SavedMovies = ({ savedMovies, onDeleteMovie }) => {
 
     return (
         <section className="saved-movies">
-            <SearchForm onFilter={filterMovies} searchQuery={searchQuery}
-                onResetInput={handleResetInput} />
+            <SearchForm
+                onFilter={filterMovies}
+                searchQuery={searchQuery}
+                onResetInput={handleResetInput}
+            />
             {isLoading ? (
                 <Preloader />
             ) : filteredMovies.length ? (

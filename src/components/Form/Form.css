@@ -23,6 +23,13 @@
     opacity: 0.7;
 }
 
+.form__button:disabled,
+.form__button[disabled] {
+    background-color: #2F2F2F;
+    color: #A0A0A0;
+    pointer-events: none;
+}
+
 .form__button-signin {
     margin: 149px 0 16px;
 }
