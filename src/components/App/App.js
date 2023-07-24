@@ -28,6 +28,8 @@ function App() {
   // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [registerErrorMessage, setRegisterErrorMessage] = useState('');
+  const [loginErrorMessage, setLoginErrorMessage] = useState('');
 
   const mainApi = new MainApi({
     url: 'https://api.mj669.movies-explorer.nomoredomains.rocks',
@@ -102,29 +104,47 @@ function App() {
   }, [savedMovies, loggedIn]);
 
   const handleLogin = (values) => {
+    setIsLoading(true);
     auth
       .authorize(values.email, values.password)
       .then((data) => {
         if (data.token) {
           localStorage.setItem('jwt', data.token);
           setLoggedIn(true);
+          setLoginErrorMessage('');
           navigate('/movies');
+        } else if (data.error === 'Bad Request') {
+          setLoginErrorMessage('Введены невалидные данные');
+        } else if (data.message) {
+          setLoginErrorMessage(data.message);
         }
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
-      });
+        setLoginErrorMessage('Что-то пошло не так...');
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleRegister = (values) => {
+    setIsLoading(true);
     auth
       .register(values.name, values.email, values.password)
       .then((res) => {
-        handleLogin(values);
+        if (res.user) {
+          setRegisterErrorMessage('')
+          handleLogin(values);
+        } else if (res.error === 'Bad Request') {
+          setRegisterErrorMessage('Введены невалидные данные');
+        } else if (res.message) {
+          setRegisterErrorMessage(res.message);
+        }
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
-      });
+        setRegisterErrorMessage('Что-то пошло не так...');
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleUpdateUser = (user, setIsEditing ) => {
@@ -207,6 +227,8 @@ function App() {
               element={<Register
                 onRegister={handleRegister}
                 loggedIn={loggedIn}
+                isLoading={isLoading}
+                errorMessage={registerErrorMessage}
               />}
             />
             <Route
@@ -214,6 +236,8 @@ function App() {
               element={<Login
                 onLogin={handleLogin}
                 loggedIn={loggedIn}
+                isLoading={isLoading}
+                errorMessage={loginErrorMessage}
               />}
             />
             <Route

@@ -16,7 +16,7 @@ function Form({ name, buttonText, linkText, url, text, children, onSubmit, isVal
 
             {children}
 
-            <span className={`input__error ${errorMsg && "input__error_visible"}`}>
+            <span className={`input__error ${isValid && "input__error_visible"}`}>
                 {errorMsg}
             </span>
             <button className={`form__button ${location.pathname === "/signin" ? 'form__button-signin' : ''}`} disabled={!isValid}>{buttonText}</button>

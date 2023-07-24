@@ -8,7 +8,7 @@ import Input from "../Input/Input";
 import { validateName } from '../../utils/validateName';
 import { validateEmail } from '../../utils/validateEmail';
 
-function Register({ onRegister }) {
+function Register({ onRegister, isLoading, errorMessage }) {
 
     const { values, handleOnChange, errors, isValid } = Validator();
 
@@ -23,12 +23,14 @@ function Register({ onRegister }) {
             </Link>
             <h2 className="register__title">Добро пожаловать!</h2>
             <Form
-                buttonText="Зарегистрироваться"
+                buttonText={isLoading ? "Регистрация..." : "Зарегистрироваться"}
                 text="Уже зарегистрированы?"
                 url="/signin"
                 linkText="Войти"
                 onSubmit={handleSubmit}
                 isValid={isValid}
+                isLoading={isLoading}
+                errorMsg={errorMessage}
             >
                 <Input
                     id="user-name"

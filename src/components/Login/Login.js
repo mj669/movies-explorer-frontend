@@ -8,7 +8,7 @@ import Form from "../Form/Form";
 import Input from "../Input/Input";
 import { validateEmail } from '../../utils/validateEmail';
 
-function Login({ onLogin, loggedIn }) {
+function Login({ onLogin, loggedIn, isLoading, errorMessage }) {
 
     const { values, handleOnChange, errors, isValid } = Validator();
     const navigate = useNavigate();
@@ -29,12 +29,14 @@ function Login({ onLogin, loggedIn }) {
             <Link to="/"><img src={logo} alt="Логотип Movie Explorer" className="header__logo register__header" /></Link>
             <h2 className="register__title">Рады видеть!</h2>
             <Form
-                buttonText="Войти"
+                buttonText={isLoading ? "Проверка данных..." : "Войти"}
                 text="Еще не зарегистрированы?"
                 url="/signup"
                 linkText="Регистрация"
                 onSubmit={handleLogin}
                 isValid={isValid}
+                isLoading={isLoading}
+                errorMsg={errorMessage}
             >
                 <Input
                     id="user-email"
