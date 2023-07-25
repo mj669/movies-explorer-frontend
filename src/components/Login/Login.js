@@ -35,6 +35,7 @@ function Login({ onLogin, loggedIn, isLoading, errorMessage }) {
                 linkText="Регистрация"
                 onSubmit={handleLogin}
                 isValid={isValid}
+                values={values}
                 isLoading={isLoading}
                 errorMsg={errorMessage}
             >
@@ -49,6 +50,7 @@ function Login({ onLogin, loggedIn, isLoading, errorMessage }) {
                     value={values.email || ''}
                     isValid={isValid}
                     errorText={validateEmail(values.email).message}
+                    autoComplete="off"
                     required
                 />
                 <Input

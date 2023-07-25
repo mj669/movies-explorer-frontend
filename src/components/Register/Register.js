@@ -29,6 +29,7 @@ function Register({ onRegister, isLoading, errorMessage }) {
                 linkText="Войти"
                 onSubmit={handleSubmit}
                 isValid={isValid}
+                values={values}
                 isLoading={isLoading}
                 errorMsg={errorMessage}
             >
