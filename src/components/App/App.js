@@ -133,7 +133,7 @@ function App() {
     auth
       .register(values.name, values.email, values.password)
       .then((res) => {
-        if (res.user) {
+        if (res) {
           setRegisterErrorMessage('')
           handleLogin(values);
         } else if (res.error === 'Bad Request') {
