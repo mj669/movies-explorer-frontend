@@ -13,6 +13,9 @@
 .moviescard__image {
     vertical-align: bottom;
     object-fit: cover;
+    object-position: top;
+    width: 364px;
+    height: 203px;
     cursor: pointer;
     transition: opacity 0.1s ease-in;
 }

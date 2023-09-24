@@ -23,6 +23,17 @@
     opacity: 0.7;
 }
 
+.movies__api-error {
+    max-width: 600px;
+    margin: 40px auto 0;
+    text-align: center;
+}
+
+.movies__error {
+    text-align: center;
+    margin: 40px auto 0;
+}
+
 @media screen and (max-width: 525px) {
     .movies__add-btn {
         width: 240px;

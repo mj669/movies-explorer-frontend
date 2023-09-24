@@ -1,21 +1,37 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './Register.css';
+import Validator from '../../utils/Validator';
 import logo from "../../images/logo.svg";
-import { NavLink } from "react-router-dom";
 import Form from "../Form/Form";
 import Input from "../Input/Input";
+import { validateName } from '../../utils/validateName';
+import { validateEmail } from '../../utils/validateEmail';
 
-function Register() {
+function Register({ onRegister, isLoading, errorMessage }) {
+
+    const { values, handleOnChange, errors, isValid } = Validator();
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        onRegister(values);
+    }
+
     return (
         <div className="register">
-            <NavLink to="/"><img src={logo} alt="Лого" className="register__header" />
-            </NavLink>
+            <Link to="/"><img src={logo} alt="Лого" className="register__header" />
+            </Link>
             <h2 className="register__title">Добро пожаловать!</h2>
             <Form
-                buttonText="Зарегистрироваться"
+                buttonText={isLoading ? "Регистрация..." : "Зарегистрироваться"}
                 text="Уже зарегистрированы?"
                 url="/signin"
                 linkText="Войти"
+                onSubmit={handleSubmit}
+                isValid={isValid}
+                values={values}
+                isLoading={isLoading}
+                errorMsg={errorMessage}
             >
                 <Input
                     id="user-name"
@@ -24,7 +40,11 @@ function Register() {
                     inputTitle="Имя"
                     minLength="2"
                     maxLength="20"
-                    errorText=""
+                    errorText={validateName(values.name).message}
+                    value={values.name || ''}
+                    onChange={handleOnChange}
+                    isValid={isValid}
+                    required
                 />
                 <Input
                     id="user-email"
@@ -33,7 +53,11 @@ function Register() {
                     inputTitle="E-mail"
                     minLength="7"
                     maxLength="200"
-                    errorText=""
+                    errorText={validateEmail(values.email).message}
+                    value={values.email || ''}
+                    onChange={handleOnChange}
+                    isValid={isValid}
+                    required
                 />
                 <Input
                     id="user-password"
@@ -42,7 +66,11 @@ function Register() {
                     inputTitle="Пароль"
                     minLength="8"
                     maxLength="200"
-                    errorText="Что-то пошло не так..."
+                    errorText={errors.password}
+                    value={values.password || ''}
+                    onChange={handleOnChange}
+                    isValid={isValid}
+                    required
                 />
             </Form>
         </div>
